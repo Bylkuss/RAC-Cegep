@@ -1,0 +1,33 @@
+.
+├── App.axaml
+├── App.axaml.cs
+├── app.manifest
+├── bin
+│   └── Debug
+│       └── net9.0
+├── Diagram
+│   ├── ClassesDiagram.puml
+│   └── DiagramPreview.png
+├── MainWindow.axaml
+├── MainWindow.axaml.cs
+├── Models
+├── obj
+│   ├── Debug
+│   │   └── net9.0
+│   ├── project.assets.json
+│   ├── project.nuget.cache
+│   ├── StreamingApp.csproj.nuget.dgspec.json
+│   ├── StreamingApp.csproj.nuget.g.props
+│   └── StreamingApp.csproj.nuget.g.targets
+├── Program.cs
+├── roadmap.png
+├── Services
+├── StreamingApp.csproj
+├── StreamingApp.sln
+├── tree.txt
+├── UnitTests
+├── Utils
+├── ViewModels
+└── Views
+
+14 directories, 17 files

@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:StreamingApp.ViewModels"
+        x:Class="StreamingApp.Views.MainWindow"
+        Title="Main Window" Width="800" Height="600">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Clients">
+                <DataGrid ItemsSource="{Binding Clients}" AutoGenerateColumns="True" x:DataType="vm:MainViewModel" />
+            </TabItem>
+            <TabItem Header="Films">
+                <DataGrid ItemsSource="{Binding Films}" AutoGenerateColumns="True" x:DataType="vm:MainViewModel" />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
