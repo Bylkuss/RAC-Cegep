@@ -1,16 +1,19 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:StreamingApp.ViewModels"
-        x:Class="StreamingApp.Views.MainWindow"
-        Title="Main Window" Width="800" Height="600">
+        x:Class="StreamingApp.Views.LoginWindow"
+        Title="Login"
+        Width="400" Height="300"
+        Background="LightGray">
     <Grid>
-        <TabControl>
-            <TabItem Header="Clients">
-                <DataGrid ItemsSource="{Binding Clients}" AutoGenerateColumns="True" x:DataType="vm:MainViewModel" />
-            </TabItem>
-            <TabItem Header="Films">
-                <DataGrid ItemsSource="{Binding Films}" AutoGenerateColumns="True" x:DataType="vm:MainViewModel" />
-            </TabItem>
-        </TabControl>
+        <!-- <TextBlock Text="Welcome to Streaming App" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Foreground="Black"/> -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="10">
+            <TextBox Watermark="User Code" Width="200"/>
+            <TextBox Watermark="Password" PasswordChar="*" Width="200"/>
+            <Button Content="Login" Width="100" HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </Window>
