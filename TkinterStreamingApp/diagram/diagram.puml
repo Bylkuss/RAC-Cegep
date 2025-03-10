@@ -1,0 +1,74 @@
+@startuml
+!theme aws-orange
+
+' Définition des classes
+class Personne {
+    + str nom
+    + str prenom
+    + str sexe
+}
+
+class Client {
+    + datetime date_inscription
+    + str courriel
+    + str password
+    + List<CarteCredit> cartes_credit
+}
+
+class Acteur {
+    + str nom_personnage
+    + datetime debut_emploi
+    + datetime fin_emploi
+    + float cachet
+}
+
+class Employe {
+    + datetime date_embauche
+    + str code_utilisateur
+    + str password
+    + str type_acces
+}
+
+class CarteCredit {
+    + str numero
+    + datetime date_expiration
+    + str code_secret
+}
+
+class Film {
+    + str nom
+    + int duree
+    + str description
+    + List<Categorie> categories
+    + List<Acteur> acteurs
+}
+
+class Categorie {
+    + str nom
+    + str description
+}
+
+' Héritage
+Personne <|-- Client
+Personne <|-- Acteur
+Personne <|-- Employe
+
+' Associations
+Client "1" *-- "0..*" CarteCredit : possede
+Film "1" *-- "0..*" Categorie : appartient_a
+Film "1" *-- "0..*" Acteur : joue_dans
+
+' Contraintes
+note top of Client
+    Un client peut avoir plusieurs cartes de crédit.
+end note
+
+note top of Film
+    Un film peut appartenir à plusieurs catégories.
+end note
+
+note top of Acteur
+    Un acteur peut jouer dans plusieurs films.
+end note
+
+@enduml
