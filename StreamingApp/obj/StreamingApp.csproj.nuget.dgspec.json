@@ -47,7 +47,7 @@
           "dependencies": {
             "Avalonia": {
               "target": "Package",
-              "version": "[11.2.1, )"
+              "version": "[11.2.5, )"
             },
             "Avalonia.Desktop": {
               "target": "Package",
@@ -60,6 +60,10 @@
             "Avalonia.Fonts.Inter": {
               "target": "Package",
               "version": "[11.2.1, )"
+            },
+            "Avalonia.ReactiveUI": {
+              "target": "Package",
+              "version": "[11.2.5, )"
             },
             "Avalonia.Themes.Fluent": {
               "target": "Package",

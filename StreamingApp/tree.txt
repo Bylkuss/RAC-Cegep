@@ -11,6 +11,13 @@
 ├── MainWindow.axaml
 ├── MainWindow.axaml.cs
 ├── Models
+│   ├── Acteur.cs
+│   ├── CarteCredit.cs
+│   ├── Categorie.cs
+│   ├── Client.cs
+│   ├── Employe.cs
+│   ├── Film.cs
+│   └── Personne.cs
 ├── obj
 │   ├── Debug
 │   │   └── net9.0
@@ -28,6 +35,10 @@
 ├── UnitTests
 ├── Utils
 ├── ViewModels
+│   ├── LoginViewModel.cs
+│   └── MainViewModel.cs
 └── Views
+    ├── LoginWindow.axaml
+    └── LoginWindow.axaml.cs
 
-14 directories, 17 files
+14 directories, 28 files

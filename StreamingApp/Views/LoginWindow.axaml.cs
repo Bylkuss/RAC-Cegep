@@ -1,12 +1,17 @@
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
-namespace StreamingApp.Views
+namespace StreamingApp.Views;
+
+public partial class LoginWindow : Window
 {
-    public partial class LoginWindow : Window
+    public LoginWindow()
     {
-        public LoginWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
     }
 }
