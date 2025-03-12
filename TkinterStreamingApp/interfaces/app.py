@@ -1,8 +1,11 @@
+
 import tkinter as tk
 from tkinter import messagebox
-from interfaces.client_screen import ClientScreen
-from interfaces.login_screen import LoginScreen
+from .client_screen import ClientScreen
+from .login_screen import LoginScreen
 from classes.employe import Employe
+from .config import STYLE_CONFIG, create_gradient
+
 
 
 class App:
@@ -10,17 +13,21 @@ class App:
         self.root = root
         self.root.title("NETFLIX")
         self.root.geometry("900x600")
-        self.root.configure(bg="gray")
+        
+        # Set app-wide gradient background
+        self.gradient_image = create_gradient(900, 600, "#1E1E1E", "#0A0A0A")
+        self.background_label = tk.Label(self.root, image=self.gradient_image)
+        self.background_label.place(relwidth=1, relheight=1)
 
-        # Hardcoded clients (for testing)
-        self.clients = []  # Define an empty list of clients
+        # Initialize data
+        self.clients = []
         self.employes = [
             Employe("Dupont", "Jean", "Homme", "2023-01-01", "admin", "123", "total"),
             Employe("Martin", "Sophie", "Femme", "2022-05-15", "user1", "123", "lecture")
         ]
-        self.logged_in_employe = None  # Variable to store the logged-in employee
+        self.logged_in_employe = None
 
-        self.show_login_screen()  # Show the login screen first
+        self.show_login_screen()
 
     def create_login_screen(self, employes):
         """Create the login screen for employees."""
