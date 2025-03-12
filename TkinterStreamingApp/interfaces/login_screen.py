@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 from classes.employe import Employe
 
-
 class LoginScreen:
     def __init__(self, root, app, employes):
         self.root = root
@@ -35,7 +34,6 @@ class LoginScreen:
                 return
 
         messagebox.showerror("Erreur", "Code utilisateur ou mot de passe incorrect")
-
 
     def show(self):
         """Display the login screen."""

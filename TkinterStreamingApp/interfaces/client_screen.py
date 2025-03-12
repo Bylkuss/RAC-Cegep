@@ -1,4 +1,3 @@
-
 import tkinter as tk
 import re
 from datetime import datetime
@@ -147,5 +146,5 @@ class ClientScreen:
         self.entry_secret_code.delete(0, tk.END)
 
         # Optionally, go back to the main screen (if applicable)
-        # Assuming `self.app.show_main_screen()` is already handling the employee as an argument
+        # Assuming self.app.show_main_screen() is already handling the employee as an argument
         self.app.show_main_screen(self.app.logged_in_employe)

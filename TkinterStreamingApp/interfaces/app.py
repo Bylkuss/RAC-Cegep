@@ -4,6 +4,7 @@ from interfaces.client_screen import ClientScreen
 from interfaces.login_screen import LoginScreen
 from classes.employe import Employe
 
+
 class App:
     def __init__(self, root):
         self.root = root
@@ -19,19 +20,15 @@ class App:
         ]
         self.logged_in_employe = None  # Variable to store the logged-in employee
 
-        # Initialize the client list frame
-        self.clients_list_frame = tk.Frame(self.root)
-        self.clients_list_frame.pack(pady=10)
+        self.show_login_screen()  # Show the login screen first
 
-        self.login_screen(self.employes)
-
-    def login_screen(self, employes):
+    def create_login_screen(self, employes):
         """Create the login screen for employees."""
-        self.clear_screen()
+        self.clear_screen()  # Clear the screen before creating the login screen
 
-        # Here, you pass `self` as the app to the LoginScreen
+        # Create an instance of LoginScreen and show it
         self.login = LoginScreen(self.root, self, employes)
-        self.login.show()
+        self.login.show()  # Show the login screen
 
     def update_client_list(self):
         """Updates the list of clients on the UI."""
@@ -49,16 +46,19 @@ class App:
                 client_label = tk.Label(self.clients_list_frame, text=f"{client.nom} {client.prenom}")
                 client_label.pack(pady=5)
 
-    def disconnect(self):
-        """Log out the user and show the login screen."""
-        self.logged_in_employe = None  # Clear the logged-in employee
-        self.show_login_screen()
+    def show_login_screen(self):
+        """Method to show the login screen."""
+        if not hasattr(self, 'login') or self.login is None:  # Check if login is initialized
+            self.create_login_screen(self.employes)
+        else:
+            self.clear_screen()  # Ensure the screen is cleared before showing the login
+            self.login.show()  # Show the login screen
 
     def show_main_screen(self, employe):
         """Display the main dashboard."""
         self.logged_in_employe = employe  # Store the logged-in employee
         from interfaces.main_screen import MainScreen
-        self.clear_screen()
+        self.clear_screen()  # Clear the current screen before showing the main screen
         MainScreen(self, employe)  # Ensure employe is passed here
 
     def clear_screen(self):
