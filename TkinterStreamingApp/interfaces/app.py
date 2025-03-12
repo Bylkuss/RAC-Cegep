@@ -1,23 +1,27 @@
 import tkinter as tk
+from tkinter import messagebox
+from interfaces.client_screen import ClientScreen
 from interfaces.login_screen import LoginScreen
 from classes.employe import Employe
-from interfaces.main_screen import MainScreen
-
 
 class App:
     def __init__(self, root):
         self.root = root
         self.root.title("NETFLIX")
-        self.root.geometry("800x600")
+        self.root.geometry("900x600")
         self.root.configure(bg="gray")
 
         # Hardcoded clients (for testing)
         self.clients = []  # Define an empty list of clients
         self.employes = [
             Employe("Dupont", "Jean", "Homme", "2023-01-01", "admin", "123", "total"),
-            Employe("Martin", "Sophie", "Femme", "2022-05-15", "user1", "lecture456", "lecture")
+            Employe("Martin", "Sophie", "Femme", "2022-05-15", "user1", "123", "lecture")
         ]
         self.logged_in_employe = None  # Variable to store the logged-in employee
+
+        # Initialize the client list frame
+        self.clients_list_frame = tk.Frame(self.root)
+        self.clients_list_frame.pack(pady=10)
 
         self.login_screen(self.employes)
 
@@ -28,6 +32,27 @@ class App:
         # Here, you pass `self` as the app to the LoginScreen
         self.login = LoginScreen(self.root, self, employes)
         self.login.show()
+
+    def update_client_list(self):
+        """Updates the list of clients on the UI."""
+        self.refresh_client_list()
+
+    def refresh_client_list(self):
+        """Refreshes the client list display."""
+        # Ensure the frame is valid before trying to destroy its children
+        if hasattr(self, 'clients_list_frame') and self.clients_list_frame.winfo_exists():
+            for widget in self.clients_list_frame.winfo_children():
+                widget.destroy()
+
+            # Re-display the updated list
+            for client in self.clients:
+                client_label = tk.Label(self.clients_list_frame, text=f"{client.nom} {client.prenom}")
+                client_label.pack(pady=5)
+
+    def disconnect(self):
+        """Log out the user and show the login screen."""
+        self.logged_in_employe = None  # Clear the logged-in employee
+        self.show_login_screen()
 
     def show_main_screen(self, employe):
         """Display the main dashboard."""

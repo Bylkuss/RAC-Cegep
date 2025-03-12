@@ -31,13 +31,11 @@ class LoginScreen:
 
         for employe in self.employes:
             if employe.code_utilisateur == code and employe.password == password:
-                if employe.a_acces_total() is None:
-                    self.app.show_main_screen(employe)  # Call main_screen from the App instance
-                else:
-                    messagebox.showerror("Erreur", "Accès refusé : L'employé n'a pas accès complet.")
+                self.app.show_main_screen(employe)  # Allow login regardless of access level
                 return
 
         messagebox.showerror("Erreur", "Code utilisateur ou mot de passe incorrect")
+
 
     def show(self):
         """Display the login screen."""

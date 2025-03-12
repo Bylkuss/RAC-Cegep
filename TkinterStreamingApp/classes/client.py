@@ -5,10 +5,14 @@ import hashlib
 class Client(Personne):
     clients_existants = []
 
-    def __init__(self, nom, prenom, sexe, date_inscription, courriel, password, carte_credit):
-        super().__init__(nom, prenom, sexe)
-        self.date_inscription = date_inscription
-        self.courriel = courriel
+    def __init__(self, nom, prenom, sexe, date_creation, email, password, carte_credit):
+        self.nom = nom
+        self.prenom = prenom
+        self.sexe = sexe
+        self.date_creation = date_creation
+        self.email = email  # Make sure email is properly defined here
+        self.password = password
+        self.carte_credit = carte_credit
 
         # Validate and hash password
         password_error = self.valider_mot_de_passe(password)
