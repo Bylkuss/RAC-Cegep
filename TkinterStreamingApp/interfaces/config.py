@@ -54,7 +54,7 @@ def apply_frame_style(frame, bg_color=STYLE_CONFIG['background_color']):
     """Apply consistent frame style."""
     frame.config(bg=bg_color)
 
-def apply_label_style(label, text, font=STYLE_CONFIG['font'], fg='white'):
+def apply_label_style(label, text, font=STYLE_CONFIG['font'], fg='black'):
     """Apply consistent label style."""
     label.config(text=text, font=font, fg=fg, bg=STYLE_CONFIG['background_color'])
 

@@ -51,11 +51,11 @@ class MainScreen:
 
     def view_clients(self):
         """Displays the list of clients."""
-
-        # TODO TEST PUROPOSE
-        credit_card = CarteCredit( "1234567890123456", "2026-01-01", "123")
+        
+        # TODO: TEST PURPOSE (Add a test client)
+        credit_card = CarteCredit("1234567890123456", "2026-01-01", "123")
         self.clients.append(Client("Doe", "John", "Homme", "john@gmail.com", "Password123", credit_card, "2022-05-15"))
-
+        
         self.clear_screen()
 
         label_clients = tk.Label(self.root, text="Liste des clients", font=STYLE_CONFIG['font_bold'], fg='white')
@@ -72,23 +72,33 @@ class MainScreen:
         client_frame.pack(fill="both", expand=True)
 
         canvas.create_window((0, 0), window=client_frame, anchor="nw")
-        canvas.configure(yscrollcommand=scrollbar.set)
 
-        # Display client details
+        # Add scroll functionality
+        canvas.config(scrollregion=canvas.bbox("all"))
+
+        # Iterate through the clients and create buttons for each client
         for client in self.clients:
-            client_label = tk.Label(client_frame, text=f"{client.nom} {client.prenom} - {client.email}", font=STYLE_CONFIG['font'], fg='white', bg=STYLE_CONFIG['background_color'])
-            client_label.pack(pady=5, anchor="w")
+            client_frame_column = tk.Frame(client_frame, bg=STYLE_CONFIG['background_color'])
+            client_frame_column.pack(fill="x", pady=5)
 
-            # Add an Edit button for each client
-            edit_button = tk.Button(client_frame, text="Edit", command=lambda c=client: self.edit_client(c))
-            edit_button.pack(pady=5)
+            client_name_label = tk.Label(client_frame_column, text=f"{client.nom} {client.prenom}", fg='gray', font=STYLE_CONFIG['font'])
+            client_name_label.pack(side="left", padx=10)
+
+            # Edit button (visible only for employees with full access)
+            if self.employe.type_acces.lower() == "total":
+                edit_button = tk.Button(client_frame_column, text="Modifier", command=lambda client=client: self.edit_client(client))
+                apply_button_style(edit_button, "Modifier")
+                edit_button.pack(side="right", padx=5)
+
+            # Delete button (visible only for employees with full access)
+            if self.employe.type_acces.lower() == "total":
+                delete_button = tk.Button(client_frame_column, text="Supprimer", command=lambda client=client: self.delete_client(client))
+                apply_button_style(delete_button, "Supprimer")
+                delete_button.pack(side="right", padx=5)
 
         scrollbar.config(command=canvas.yview)
+        canvas.config(yscrollcommand=scrollbar.set)
 
-        # Back button
-        self.button_back = tk.Button(self.root, text="Retour", command=lambda: self.app.show_main_screen(self.employe))
-        apply_button_style(self.button_back, "Retour")
-        self.button_back.pack(pady=10)
 
     def edit_client(self, client):
         """Open the client edit screen."""
@@ -104,7 +114,14 @@ class MainScreen:
         
 
         print(f"Updated client: {new_name}, {new_email}")
-    
+    def delete_client(self, client):
+        """Deletes a client from the list."""
+        response = messagebox.askyesno("Confirmation", f"Êtes-vous sûr de vouloir supprimer le client {client.nom} {client.prenom}?")
+        if response:
+            self.app.clients.remove(client)
+            self.view_clients()  # Refresh the client list
+
+
     def disconnect(self):
         """Handles the logout functionality with a confirmation dialog."""
         if messagebox.askyesno("Déconnexion", "Voulez-vous vraiment vous déconnecter ?"):
