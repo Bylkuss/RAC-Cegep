@@ -1,3 +1,4 @@
+from datetime import datetime
 from .personne import Personne
 from .carte_credit import CarteCredit
 import hashlib
@@ -5,14 +6,14 @@ import hashlib
 class Client(Personne):
     clients_existants = []
 
-    def __init__(self, nom, prenom, sexe, date_creation, email, password, carte_credit):
+    def __init__(self, nom, prenom, sexe, email, password, carte_credit, date_creation=None):
         self.nom = nom
         self.prenom = prenom
         self.sexe = sexe
-        self.date_creation = date_creation
         self.email = email  # Make sure email is properly defined here
         self.password = password
         self.carte_credit = carte_credit
+        self.date_creation = date_creation or datetime.now() 
 
         # Validate and hash password
         password_error = self.valider_mot_de_passe(password)

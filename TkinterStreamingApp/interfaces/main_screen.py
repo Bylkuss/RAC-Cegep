@@ -1,8 +1,10 @@
-# main_screen.py
 import tkinter as tk
 from tkinter import messagebox
+from classes.carte_credit import CarteCredit # TODO TEST PUROPOSE
+from classes.client import Client #TODO TEST PURPOSE
 from interfaces.client_screen import ClientScreen
 from .config import STYLE_CONFIG, apply_button_style, apply_label_style, create_gradient
+from interfaces.edit_client_screen import ClientEditScreen  # Import the ClientEditScreen class
 
 class MainScreen:
     def __init__(self, app, employe):
@@ -43,8 +45,17 @@ class MainScreen:
         self.clear_screen()
         ClientScreen(self.app)
 
+    def email_exists(self, email):
+        """Check if the email already exists in the clients list."""
+        return any(client.email == email for client in self.clients)
+
     def view_clients(self):
         """Displays the list of clients."""
+
+        # TODO TEST PUROPOSE
+        credit_card = CarteCredit( "1234567890123456", "2026-01-01", "123")
+        self.clients.append(Client("Doe", "John", "Homme", "john@gmail.com", "Password123", credit_card, "2022-05-15"))
+
         self.clear_screen()
 
         label_clients = tk.Label(self.root, text="Liste des clients", font=STYLE_CONFIG['font_bold'], fg='white')
@@ -68,6 +79,10 @@ class MainScreen:
             client_label = tk.Label(client_frame, text=f"{client.nom} {client.prenom} - {client.email}", font=STYLE_CONFIG['font'], fg='white', bg=STYLE_CONFIG['background_color'])
             client_label.pack(pady=5, anchor="w")
 
+            # Add an Edit button for each client
+            edit_button = tk.Button(client_frame, text="Edit", command=lambda c=client: self.edit_client(c))
+            edit_button.pack(pady=5)
+
         scrollbar.config(command=canvas.yview)
 
         # Back button
@@ -75,6 +90,21 @@ class MainScreen:
         apply_button_style(self.button_back, "Retour")
         self.button_back.pack(pady=10)
 
+    def edit_client(self, client):
+        """Open the client edit screen."""
+        # Pass the client data and callback to update the client info in MainScreen
+        edit_screen = ClientEditScreen(self.app, self.root, client, self.update_client_info, self.email_exists)
+
+
+    def update_client_info(self, client, new_name, new_prenom, new_email):
+        """Update the client info in the clients list."""
+        client.nom = new_name
+        client.prenom = new_prenom
+        client.email = new_email                
+        
+
+        print(f"Updated client: {new_name}, {new_email}")
+    
     def disconnect(self):
         """Handles the logout functionality with a confirmation dialog."""
         if messagebox.askyesno("Déconnexion", "Voulez-vous vraiment vous déconnecter ?"):

@@ -12,6 +12,10 @@ class ClientScreen:
         self.app = app
         self.root = app.root
         
+        # Initialize clients list if not already done in self.app
+        if not hasattr(self.app, 'clients'):
+            self.app.clients = []  # Initialize the clients list
+        
         # Set gradient background
         self.gradient_image = create_gradient(900, 600, "#1E1E1E", "#0A0A0A")
         self.background_label = tk.Label(self.root, image=self.gradient_image)
@@ -90,6 +94,20 @@ class ClientScreen:
         self.button_save.pack(side=tk.LEFT, padx=10)
         self.button_cancel.pack(side=tk.LEFT, padx=10)
 
+    # TODO for test purpose       
+    def get_hardcoded_client(self):
+        """Return a hardcoded client for testing purposes"""
+        from classes.client import Client
+        return Client(
+            nom="Bob",
+            prenom="Dupont",
+            sexe="Homme",
+            email="bob@example.com",
+            password="secretpassword",
+            carte_credit=CarteCredit("1234567890123456", "2025-12-01", "123"),
+            date_creation=datetime.now()
+        )
+
     def clear_placeholder(self, event, entry, placeholder):
         """Clear placeholder text on focus"""
         if entry.get() == placeholder:
@@ -111,6 +129,10 @@ class ClientScreen:
     def is_valid_email(self, email):
         """Validate email format"""
         return re.match(r"[^@]+@[^@]+\.[^@]+", email)
+    
+    def email_exists(self, email):
+        """Check if email already exists in clients list"""
+        return any(client.email == email for client in self.app.clients)
 
     def save_client(self):
         """Save new client with validation"""
@@ -137,7 +159,7 @@ class ClientScreen:
 
         # Validate email format and uniqueness
         if not self.is_valid_email(clean_data['email']):
-            messagebox.showerror("Erreur", "Format d'email invalide!")
+            messagebox.showerror("Erreur", "Format d'email invalid!")
             return
             
         if any(client.email == clean_data['email'] for client in self.app.clients):
@@ -177,7 +199,6 @@ class ClientScreen:
                 clean_data['nom'],
                 clean_data['prenom'],
                 self.sexe_var.get(),
-                datetime.now(),
                 clean_data['email'],
                 clean_data['password'],
                 carte_credit
