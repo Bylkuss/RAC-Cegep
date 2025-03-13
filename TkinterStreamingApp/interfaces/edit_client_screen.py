@@ -49,7 +49,7 @@ class ClientEditScreen:
         apply_button_style(self.button_save, "Sauvegarder")
         
         self.button_cancel = tk.Button(self.button_frame, text="Annuler", command=self.cancel)
-        apply_button_style(self.button_cancel, "Annuler")
+        apply_button_style(self.button_cancel, "Annuler", color=STYLE_CONFIG['danger_color'])
 
         self.button_save.pack(side=tk.LEFT, padx=10)
         self.button_cancel.pack(side=tk.LEFT, padx=10)

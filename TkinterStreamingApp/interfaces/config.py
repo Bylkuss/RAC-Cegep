@@ -1,18 +1,19 @@
-# interfaces/config.py
 from PIL import Image, ImageTk, ImageDraw
 import tkinter as tk
 
 # Global style configuration
 STYLE_CONFIG = {
-    'primary_color': '#6a0dad',  # Purple
-    'secondary_color': '#00FFFF',  # Neon Cyan
+    'primary_color': '#0D1B2A',  # Dark Blue
+    'secondary_color': '#1F3A6B',  # Steel Blue
+    'highlight_color': '#4C97D2',  # Sky Blue
     'background_color': '#1E1E1E',  # Dark Gray
-    'button_color': '#8A2BE2',  # Electric Purple
+    'button_color': '#1F3A6B',  # Steel Blue for buttons
+    'danger_color': '#FF0000',  # Red for danger actions
     'font': ('Poppins', 12),
     'font_bold': ('Poppins', 14, 'bold'),
     'button_radius': 12,
     'hover_effect': {
-        'bg_color': '#00FFFF',  # Neon Cyan on hover
+        'bg_color': '#4C97D2',  # Sky Blue on hover
         'fg_color': '#1E1E1E',  # Dark Gray text on hover
     },
     'glassmorphism': {
@@ -22,20 +23,24 @@ STYLE_CONFIG = {
     'input_field': {
         'bg': '#2E2E2E',
         'fg': 'white',
-        'highlightcolor': '#00FFFF',
+        'highlightcolor': '#4C97D2',
         'insertbackground': 'white',
         'relief': 'flat',
         'borderwidth': 1
     },
 }
 
-def apply_button_style(button, text, width=12, height=1):
+
+def apply_button_style(button, text, width=12, height=1, color=None):
     """Apply a consistent button style to all buttons."""
+    # Set the button color, default is the primary button color
+    button_color = color if color else STYLE_CONFIG['button_color']
+    
     button.config(
         text=text,
         width=width,
         height=height,
-        bg=STYLE_CONFIG['button_color'],
+        bg=button_color,
         fg='white',
         font=STYLE_CONFIG['font_bold'],
         relief='flat',
@@ -48,7 +53,7 @@ def apply_button_style(button, text, width=12, height=1):
         borderwidth=0,
     )
     # Add rounded corners (requires a custom canvas-based button for full effect)
-    button.config(highlightbackground=STYLE_CONFIG['button_color'], highlightcolor=STYLE_CONFIG['button_color'])
+    button.config(highlightbackground=button_color, highlightcolor=button_color)
 
 def apply_frame_style(frame, bg_color=STYLE_CONFIG['background_color']):
     """Apply consistent frame style."""

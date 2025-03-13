@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-from classes.carte_credit import CarteCredit # TODO TEST PUROPOSE
-from classes.client import Client #TODO TEST PURPOSE
+from classes.carte_credit import CarteCredit  # TODO TEST PURPOSE
+from classes.client import Client  # TODO TEST PURPOSE
 from interfaces.client_screen import ClientScreen
 from .config import STYLE_CONFIG, apply_button_style, apply_label_style, create_gradient
 from interfaces.edit_client_screen import ClientEditScreen  # Import the ClientEditScreen class
@@ -33,7 +33,7 @@ class MainScreen:
             self.button_add_client.config(state="disabled")
 
         self.button_disconnect = tk.Button(self.nav_frame, text="Déconnexion", command=self.disconnect)
-        apply_button_style(self.button_disconnect, "Déconnexion")
+        apply_button_style(self.button_disconnect, "Déconnexion", color=STYLE_CONFIG['danger_color'])
 
         # Pack navigation buttons
         self.button_view_clients.pack(side='left', padx=10)
@@ -93,7 +93,7 @@ class MainScreen:
             # Delete button (visible only for employees with full access)
             if self.employe.type_acces.lower() == "total":
                 delete_button = tk.Button(client_frame_column, text="Supprimer", command=lambda client=client: self.delete_client(client))
-                apply_button_style(delete_button, "Supprimer")
+                apply_button_style(delete_button, "Supprimer", color=STYLE_CONFIG['danger_color'])
                 delete_button.pack(side="right", padx=5)
 
         scrollbar.config(command=canvas.yview)
@@ -111,9 +111,9 @@ class MainScreen:
         client.nom = new_name
         client.prenom = new_prenom
         client.email = new_email                
-        
 
         print(f"Updated client: {new_name}, {new_email}")
+
     def delete_client(self, client):
         """Deletes a client from the list."""
         response = messagebox.askyesno("Confirmation", f"Êtes-vous sûr de vouloir supprimer le client {client.nom} {client.prenom}?")

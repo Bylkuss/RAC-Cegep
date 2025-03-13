@@ -89,7 +89,7 @@ class ClientScreen:
         apply_button_style(self.button_save, "Ajouter client")
 
         self.button_cancel = tk.Button(self.button_frame, text="Retour", command=self.cancel)
-        apply_button_style(self.button_cancel, "Retour")
+        apply_button_style(self.button_cancel, "Retour", color=STYLE_CONFIG['danger_color'])
 
         self.button_save.pack(side=tk.LEFT, padx=10)
         self.button_cancel.pack(side=tk.LEFT, padx=10)
@@ -227,3 +227,4 @@ class ClientScreen:
             entry.delete(0, tk.END)
         
         self.app.show_main_screen(self.app.logged_in_employe)
+
