@@ -13,9 +13,18 @@ class CarteCredit:
         return None
 
     def valider_date_expiration(self):
-        """Validates the expiration date."""
-        if self.date_expiration < datetime.now():
-            return "La carte de crédit est expirée."
+        """Validates the expiration date with detailed errors"""
+        try:
+            if isinstance(self.date_expiration, str):
+                # Convert string to datetime if needed
+                self.date_expiration = datetime.strptime(self.date_expiration, "%Y-%m-%d")
+                
+            if self.date_expiration < datetime.now():
+                return "La date d'expiration est antérieure à la date actuelle."
+                
+        except ValueError:
+            return "Format de date invalide. Utilisez AAAA-MM-JJ."
+            
         return None
 
     def valider_code_secret(self):

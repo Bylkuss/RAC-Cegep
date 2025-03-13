@@ -20,14 +20,16 @@ STYLE_CONFIG = {
         'blur_radius': 10,
     },
     'input_field': {
-        'bg': '#333333',  # Dark gray background
+        'bg': '#2E2E2E',
         'fg': 'white',
-        'highlightcolor': '#00FFFF',  # Neon cyan border
-        'insertbackground': 'white',  # Cursor color
+        'highlightcolor': '#00FFFF',
+        'insertbackground': 'white',
+        'relief': 'flat',
+        'borderwidth': 1
     },
 }
 
-def apply_button_style(button, text, width=20, height=2):
+def apply_button_style(button, text, width=12, height=1):
     """Apply a consistent button style to all buttons."""
     button.config(
         text=text,
@@ -41,7 +43,7 @@ def apply_button_style(button, text, width=20, height=2):
         highlightthickness=0,
         activebackground=STYLE_CONFIG['hover_effect']['bg_color'],
         activeforeground=STYLE_CONFIG['hover_effect']['fg_color'],
-        padx=10,
+        padx=5,
         pady=5,
         borderwidth=0,
     )

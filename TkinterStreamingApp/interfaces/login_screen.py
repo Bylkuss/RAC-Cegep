@@ -1,4 +1,3 @@
-# login_screen.py
 import tkinter as tk
 from tkinter import messagebox
 from classes.employe import Employe
@@ -20,14 +19,16 @@ class LoginScreen:
         self.login_frame.place(relx=0.5, rely=0.5, anchor='center')
 
         # Username label and entry
-        apply_label_style(tk.Label(self.login_frame, text="Code utilisateur"), "Code utilisateur")
+        self.label_code = tk.Label(self.login_frame, text="Code utilisateur", font=STYLE_CONFIG['font'], fg='white', bg=STYLE_CONFIG['glassmorphism']['bg_color'])
+        self.label_code.pack(pady=(10, 5))
         self.entry_code = tk.Entry(self.login_frame, font=STYLE_CONFIG['font'], bg='white', fg='black', bd=0)
-        self.entry_code.pack(pady=5)
+        self.entry_code.pack(pady=(0,10), padx=40)
 
         # Password label and entry
-        apply_label_style(tk.Label(self.login_frame, text="Mot de passe"), "Mot de passe")
+        self.label_password = tk.Label(self.login_frame, text="Mot de passe", font=STYLE_CONFIG['font'], fg='white', bg=STYLE_CONFIG['glassmorphism']['bg_color'])
+        self.label_password.pack(pady=(10, 5))
         self.entry_password = tk.Entry(self.login_frame, show="*", font=STYLE_CONFIG['font'], bg='white', fg='black', bd=0)
-        self.entry_password.pack(pady=5)
+        self.entry_password.pack(pady=(0, 20), padx=40)
 
         # Login button
         self.button_login = tk.Button(self.login_frame, text="Se connecter", command=self.login)
