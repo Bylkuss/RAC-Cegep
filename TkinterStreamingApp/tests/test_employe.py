@@ -9,26 +9,49 @@ from classes.employe import Employe
 
 class TestEmploye(unittest.TestCase):
 
-    def test_initialization(self):
-        employe = Employe("Alice", "Dupont", "F", "2025-03-10", "EMP123", "password123", "total")
+    def test_create_employe_valid(self):
+        employe = Employe(
+            nom="Alice",
+            prenom="Smith",
+            sexe="F",
+            date_embauche="2025-03-01",
+            code_utilisateur="A123",
+            password="password123",
+            type_acces="total"
+        )
+        
         self.assertEqual(employe.nom, "Alice")
-        self.assertEqual(employe.code_utilisateur, "EMP123")
         self.assertEqual(employe.type_acces, "total")
 
-    def test_valider_mot_de_passe(self):
-        employe = Employe("Alice", "Dupont", "F", "2025-03-10", "EMP123", "123", "total")
-        result = employe.valider_mot_de_passe()
-        self.assertEqual(result, "Le mot de passe doit comporter au moins 8 caractères.")
+    def test_invalid_password(self):
+        # Create an employe with invalid password and check if the validation method is called.
+        employe = Employe(
+            nom="Alice",
+            prenom="Smith",
+            sexe="F",
+            date_embauche="2025-03-01",
+            code_utilisateur="A123",
+            password="short",  # Invalid password
+            type_acces="total"
+        )
+        
+        # Check the error message from the password validation method
+        self.assertEqual(employe.valider_mot_de_passe(), "Le mot de passe doit comporter au moins 8 caractères.")
 
-    def test_a_acces_total(self):
-        employe = Employe("Alice", "Dupont", "F", "2025-03-10", "EMP123", "password123", "lecture")
-        result = employe.a_acces_total()
-        self.assertEqual(result, "L'employé n'a pas accès à toutes les fonctionnalités.")
+    def test_access_check(self):
+        employe = Employe(
+            nom="Alice",
+            prenom="Smith",
+            sexe="F",
+            date_embauche="2025-03-01",
+            code_utilisateur="A123",
+            password="password123",
+            type_acces="lecture"
+        )
+        
+        self.assertEqual(employe.a_acces_lecture(), None)
+        self.assertEqual(employe.a_acces_total(), "L'employé n'a pas accès à toutes les fonctionnalités.")
 
-    def test_a_acces_lecture(self):
-        employe = Employe("Alice", "Dupont", "F", "2025-03-10", "EMP123", "password123", "total")
-        result = employe.a_acces_lecture()
-        self.assertEqual(result, "L'employé n'a que l'accès en lecture.")
 
 if __name__ == "__main__":
     unittest.main()

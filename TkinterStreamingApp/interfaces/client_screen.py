@@ -12,57 +12,75 @@ class ClientScreen:
         self.app = app
         self.root = app.root
         
-        # Initialize clients list if not already done in self.app
         if not hasattr(self.app, 'clients'):
-            self.app.clients = []  # Initialize the clients list
-        
-        # Set gradient background
+            self.app.clients = []
+
         self.gradient_image = create_gradient(900, 600, "#1E1E1E", "#0A0A0A")
         self.background_label = tk.Label(self.root, image=self.gradient_image)
         self.background_label.place(relwidth=1, relheight=1)
 
-        # Glassmorphism form container
         self.form_frame = tk.Frame(self.root, bg=STYLE_CONFIG['glassmorphism']['bg_color'], bd=0, highlightthickness=0)
         self.form_frame.place(relx=0.5, rely=0.5, anchor='center')
 
-        # Form fields with placeholders
         fields = [
-            ("entry_name", "Nom"),
-            ("entry_prenom", "Prénom"),
-            ("entry_email", "exemple@courriel.com"),
-            ("entry_password", "Mot de passe"),
-            ("entry_credit_card_digits", "1234 5678 9012 3456"),
-            ("entry_expiration_date", "AAAA-MM-JJ"),
-            ("entry_secret_code", "123")
-        ]
+        ("entry_name", "Nom"),
+        ("entry_prenom", "Prénom"),
+        ("entry_email", "exemple@courriel.com"),
+        ("entry_password", "Mot de passe"),
+    ]
 
+        # Create fields before the credit card label
         for entry_var, placeholder in fields:
-            # Create entry
             entry = tk.Entry(
                 self.form_frame,
                 font=STYLE_CONFIG['font'],
                 **STYLE_CONFIG['input_field']
             )
-            
-            # Set name for sensitive fields tracking
             entry._name = entry_var
-
-            # Add placeholder
             entry.insert(0, placeholder)
             entry.config(fg='#888888')
-
-            # Bind events for placeholder handling
             entry.bind("<FocusIn>", lambda e, entry=entry, ph=placeholder: self.clear_placeholder(e, entry, ph))
             entry.bind("<FocusOut>", lambda e, entry=entry, ph=placeholder: self.restore_placeholder(e, entry, ph))
 
-            # Mask sensitive fields
             if entry_var in self.SENSITIVE_FIELDS:
                 entry.config(show="")
 
             setattr(self, entry_var, entry)
             entry.pack(pady=5, ipady=3, ipadx=10)
 
-        # Gender dropdown
+        # === Label Carte de Crédit ===
+        tk.Label(self.form_frame, text="Informations Carte de Crédit", 
+                font=(STYLE_CONFIG['font'][0], 12, "bold"), 
+                bg=STYLE_CONFIG['glassmorphism']['bg_color'], 
+                fg='white').pack(pady=(15, 5))
+
+        # Create credit card fields after the label
+        fields = [
+            ("entry_credit_card_digits", "1234 5678 9012 3456"),
+            ("entry_expiration_date", "AA/MM"),
+            ("entry_secret_code", "123")
+        ]
+
+        for entry_var, placeholder in fields:
+            entry = tk.Entry(
+                self.form_frame,
+                font=STYLE_CONFIG['font'],
+                **STYLE_CONFIG['input_field']
+            )
+            entry._name = entry_var
+            entry.insert(0, placeholder)
+            entry.config(fg='#888888')
+            entry.bind("<FocusIn>", lambda e, entry=entry, ph=placeholder: self.clear_placeholder(e, entry, ph))
+            entry.bind("<FocusOut>", lambda e, entry=entry, ph=placeholder: self.restore_placeholder(e, entry, ph))
+
+            if entry_var in self.SENSITIVE_FIELDS:
+                entry.config(show="")
+
+            setattr(self, entry_var, entry)
+            entry.pack(pady=5, ipady=3, ipadx=10)
+
+
+        # Dropdown sexe
         self.sexe_var = tk.StringVar(self.root)
         self.sexe_var.set("Homme")
         self.dropdown_sexe = tk.OptionMenu(
@@ -81,120 +99,86 @@ class ClientScreen:
         )
         self.dropdown_sexe.pack(pady=5)
 
-        # Action buttons
+        # Boutons
         self.button_frame = tk.Frame(self.form_frame, bg=STYLE_CONFIG['glassmorphism']['bg_color'])
         self.button_frame.pack(pady=20)
 
-        self.button_save = tk.Button(self.button_frame, text="Ajouter client", command=self.save_client)
-        apply_button_style(self.button_save, "Ajouter client")
+        self.button_save = tk.Button(self.button_frame, text="Ajouter", command=self.save_client)
+        apply_button_style(self.button_save, "Ajouter")
 
-        self.button_cancel = tk.Button(self.button_frame, text="Retour", command=self.cancel)
-        apply_button_style(self.button_cancel, "Retour", color=STYLE_CONFIG['danger_color'])
+        self.button_cancel = tk.Button(self.button_frame, text="Annuler", command=self.cancel)
+        apply_button_style(self.button_cancel, "Annuler", color=STYLE_CONFIG['danger_color'])
 
         self.button_save.pack(side=tk.LEFT, padx=10)
         self.button_cancel.pack(side=tk.LEFT, padx=10)
 
-    # TODO for test purpose       
-    def get_hardcoded_client(self):
-        """Return a hardcoded client for testing purposes"""
-        from classes.client import Client
-        return Client(
-            nom="Bob",
-            prenom="Dupont",
-            sexe="Homme",
-            email="bob@example.com",
-            password="secretpassword",
-            carte_credit=CarteCredit("1234567890123456", "2025-12-01", "123"),
-            date_creation=datetime.now()
-        )
-
     def clear_placeholder(self, event, entry, placeholder):
-        """Clear placeholder text on focus"""
         if entry.get() == placeholder:
             entry.delete(0, tk.END)
             entry.config(fg=STYLE_CONFIG['input_field']['fg'])
-            # Hide sensitive fields
             if entry._name in self.SENSITIVE_FIELDS:
                 entry.config(show="*")
 
     def restore_placeholder(self, event, entry, placeholder):
-        """Restore placeholder if empty"""
         if not entry.get():
             entry.insert(0, placeholder)
             entry.config(fg='#888888')
-            # Show sensitive fields as plain text if empty
             if entry._name in self.SENSITIVE_FIELDS:
                 entry.config(show="")
 
     def is_valid_email(self, email):
-        """Validate email format"""
         return re.match(r"[^@]+@[^@]+\.[^@]+", email)
-    
-    def email_exists(self, email):
-        """Check if email already exists in clients list"""
-        return any(client.email == email for client in self.app.clients)
 
     def save_client(self):
-        """Save new client with validation"""
         from classes.client import Client
         
-        # Get values with placeholder check
         fields = {
             'nom': (self.entry_name.get(), "Nom"),
             'prenom': (self.entry_prenom.get(), "Prénom"),
             'email': (self.entry_email.get(), "exemple@courriel.com"),
             'password': (self.entry_password.get(), "Mot de passe"),
             'credit_card': (self.entry_credit_card_digits.get(), "1234 5678 9012 3456"),
-            'exp_date': (self.entry_expiration_date.get(), "AAAA-MM-JJ"),
+            'exp_date': (self.entry_expiration_date.get(), "AA/MM"),
             'secret_code': (self.entry_secret_code.get(), "123")
         }
 
-        # Clean data (remove placeholders)
         clean_data = {field: value if value != placeholder else "" for field, (value, placeholder) in fields.items()}
 
-        # Validate required fields
         if not all(clean_data.values()):
             messagebox.showerror("Erreur", "Tous les champs sont obligatoires!")
             return
 
-        # Validate email format and uniqueness
         if not self.is_valid_email(clean_data['email']):
             messagebox.showerror("Erreur", "Format d'email invalid!")
             return
-            
+
         if any(client.email == clean_data['email'] for client in self.app.clients):
             messagebox.showerror("Erreur", "Email déjà utilisé!")
             return
 
-        # Validate password
         password_error = Client.valider_mot_de_passe(clean_data['password'])
         if password_error:
             messagebox.showerror("Erreur", password_error)
             return
 
         try:
-            # Validate credit card data
-            exp_date = datetime.strptime(clean_data['exp_date'], "%Y-%m-%d")
             carte_credit = CarteCredit(
                 clean_data['credit_card'],
                 clean_data['exp_date'],
                 clean_data['secret_code']
             )
 
-            # Check individual validation errors
-            errors = []
-            if error := carte_credit.valider_numero():
-                errors.append(error)
-            if error := carte_credit.valider_date_expiration():
-                errors.append(error)
-            if error := carte_credit.valider_code_secret():
-                errors.append(error)
+            errors = [
+                carte_credit.valider_numero(),
+                carte_credit.valider_date_expiration(),
+                carte_credit.valider_code_secret()
+            ]
+            errors = [e for e in errors if e]
 
             if errors:
                 messagebox.showerror("Erreur", "\n".join(errors))
                 return
 
-            # Save new client
             new_client = Client(
                 clean_data['nom'],
                 clean_data['prenom'],
@@ -208,13 +192,10 @@ class ClientScreen:
             self.app.update_client_list()
             self.cancel()
 
-        except ValueError as e:
-            messagebox.showerror("Erreur", str(e))
         except Exception as e:
             messagebox.showerror("Erreur", f"Erreur inattendue: {str(e)}")
 
     def cancel(self):
-        """Clear form and return to main screen"""
         for entry in [
             self.entry_name,
             self.entry_prenom,
@@ -227,4 +208,3 @@ class ClientScreen:
             entry.delete(0, tk.END)
         
         self.app.show_main_screen(self.app.logged_in_employe)
-

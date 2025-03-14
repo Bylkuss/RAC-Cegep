@@ -13,7 +13,11 @@ class Client(Personne):
         self.email = email  # Make sure email is properly defined here
         self.password = password
         self.carte_credit = carte_credit
-        self.date_creation = date_creation or datetime.now() 
+        
+        if isinstance(date_creation, str):
+            self.date_creation = date_creation
+        else:
+            self.date_creation = (date_creation or datetime.now()).strftime('%Y-%m-%d')
 
         # Validate and hash password
         password_error = self.valider_mot_de_passe(password)

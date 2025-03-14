@@ -1,0 +1,327 @@
+[
+    {
+        "nom": "Inception",
+        "duree": 148,
+        "description": "Un voleur s'infiltre dans les rêves des autres.",
+        "categories": [
+            "Science-fiction",
+            "Action",
+            "Thriller"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Dom Cobb",
+                "nom_acteur": "Leonardo DiCaprio"
+            },
+            {
+                "nom_personnage": "Arthur",
+                "nom_acteur": "Joseph Gordon-Levitt"
+            },
+            {
+                "nom_personnage": "Ariadne",
+                "nom_acteur": "Elliot Page"
+            }
+        ]
+    },
+    {
+        "nom": "The Matrix",
+        "duree": 136,
+        "description": "Un programmeur découvre la vérité sur sa réalité.",
+        "categories": [
+            "Science-fiction",
+            "Action"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Neo",
+                "nom_acteur": "Keanu Reeves"
+            },
+            {
+                "nom_personnage": "Morpheus",
+                "nom_acteur": "Laurence Fishburne"
+            },
+            {
+                "nom_personnage": "Trinity",
+                "nom_acteur": "Carrie-Anne Moss"
+            }
+        ]
+    },
+    {
+        "nom": "The Godfather",
+        "duree": 175,
+        "description": "L'histoire de la famille mafieuse Corleone.",
+        "categories": [
+            "Drame",
+            "Crime"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Vito Corleone",
+                "nom_acteur": "Marlon Brando"
+            },
+            {
+                "nom_personnage": "Michael Corleone",
+                "nom_acteur": "Al Pacino"
+            },
+            {
+                "nom_personnage": "Tom Hagen",
+                "nom_acteur": "Robert Duvall"
+            }
+        ]
+    },
+    {
+        "nom": "Pulp Fiction",
+        "duree": 154,
+        "description": "Des histoires entrelacées de la pègre de Los Angeles.",
+        "categories": [
+            "Crime",
+            "Drame"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Vincent Vega",
+                "nom_acteur": "John Travolta"
+            },
+            {
+                "nom_personnage": "Jules Winnfield",
+                "nom_acteur": "Samuel L. Jackson"
+            },
+            {
+                "nom_personnage": "Mia Wallace",
+                "nom_acteur": "Uma Thurman"
+            }
+        ]
+    },
+    {
+        "nom": "Fight Club",
+        "duree": 139,
+        "description": "Un homme rencontre un vendeur de savon et crée un club de combat.",
+        "categories": [
+            "Drame",
+            "Thriller"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "The Narrator",
+                "nom_acteur": "Edward Norton"
+            },
+            {
+                "nom_personnage": "Tyler Durden",
+                "nom_acteur": "Brad Pitt"
+            },
+            {
+                "nom_personnage": "Marla Singer",
+                "nom_acteur": "Helena Bonham Carter"
+            }
+        ]
+    },
+    {
+        "nom": "Forrest Gump",
+        "duree": 142,
+        "description": "L'histoire de la vie de Forrest Gump.",
+        "categories": [
+            "Drame",
+            "Romance"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Forrest Gump",
+                "nom_acteur": "Tom Hanks"
+            },
+            {
+                "nom_personnage": "Jenny Curran",
+                "nom_acteur": "Robin Wright"
+            },
+            {
+                "nom_personnage": "Lt. Dan Taylor",
+                "nom_acteur": "Gary Sinise"
+            }
+        ]
+    },
+    {
+        "nom": "The Dark Knight",
+        "duree": 152,
+        "description": "Batman affronte le Joker à Gotham.",
+        "categories": [
+            "Action",
+            "Crime",
+            "Drame"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Bruce Wayne",
+                "nom_acteur": "Christian Bale"
+            },
+            {
+                "nom_personnage": "The Joker",
+                "nom_acteur": "Heath Ledger"
+            },
+            {
+                "nom_personnage": "Harvey Dent",
+                "nom_acteur": "Aaron Eckhart"
+            }
+        ]
+    },
+    {
+        "nom": "Schindler's List",
+        "duree": 195,
+        "description": "L'histoire d'Oskar Schindler qui sauva des Juifs durant la Seconde Guerre mondiale.",
+        "categories": [
+            "Drame",
+            "Historique"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Oskar Schindler",
+                "nom_acteur": "Liam Neeson"
+            },
+            {
+                "nom_personnage": "Amon Goeth",
+                "nom_acteur": "Ralph Fiennes"
+            },
+            {
+                "nom_personnage": "Itzhak Stern",
+                "nom_acteur": "Ben Kingsley"
+            }
+        ]
+    },
+    {
+        "nom": "Gladiator",
+        "duree": 155,
+        "description": "Un général romain devenu esclave cherche à se venger.",
+        "categories": [
+            "Action",
+            "Drame",
+            "Historique"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Maximus",
+                "nom_acteur": "Russell Crowe"
+            },
+            {
+                "nom_personnage": "Commodus",
+                "nom_acteur": "Joaquin Phoenix"
+            },
+            {
+                "nom_personnage": "Lucilla",
+                "nom_acteur": "Connie Nielsen"
+            }
+        ]
+    },
+    {
+        "nom": "The Lord of the Rings: The Fellowship of the Ring",
+        "duree": 178,
+        "description": "Un hobbit commence son voyage pour détruire l'Anneau Unique.",
+        "categories": [
+            "Aventure",
+            "Fantastique"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Frodo Baggins",
+                "nom_acteur": "Elijah Wood"
+            },
+            {
+                "nom_personnage": "Gandalf",
+                "nom_acteur": "Ian McKellen"
+            },
+            {
+                "nom_personnage": "Aragorn",
+                "nom_acteur": "Viggo Mortensen"
+            }
+        ]
+    },
+    {
+        "nom": "The Lion King",
+        "duree": 88,
+        "description": "Un jeune lion apprend à devenir roi.",
+        "categories": [
+            "Animation",
+            "Aventure",
+            "Drame"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Simba",
+                "nom_acteur": "Matthew Broderick"
+            },
+            {
+                "nom_personnage": "Mufasa",
+                "nom_acteur": "James Earl Jones"
+            },
+            {
+                "nom_personnage": "Scar",
+                "nom_acteur": "Jeremy Irons"
+            }
+        ]
+    },
+    {
+        "nom": "Interstellar",
+        "duree": 169,
+        "description": "Un groupe d'astronautes voyage à travers un trou de ver.",
+        "categories": [
+            "Science-fiction",
+            "Drame"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Cooper",
+                "nom_acteur": "Matthew McConaughey"
+            },
+            {
+                "nom_personnage": "Brand",
+                "nom_acteur": "Anne Hathaway"
+            },
+            {
+                "nom_personnage": "Murph",
+                "nom_acteur": "Jessica Chastain"
+            }
+        ]
+    },
+    {
+        "nom": "Saving Private Ryan",
+        "duree": 169,
+        "description": "Des soldats sont envoyés pour sauver le soldat Ryan.",
+        "categories": [
+            "Drame",
+            "Guerre"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Capt. John H. Miller",
+                "nom_acteur": "Tom Hanks"
+            },
+            {
+                "nom_personnage": "Pvt. James Francis Ryan",
+                "nom_acteur": "Matt Damon"
+            },
+            {
+                "nom_personnage": "Sgt. Horvath",
+                "nom_acteur": "Tom Sizemore"
+            }
+        ]
+    },
+    {
+        "nom": "The Shawshank Redemption",
+        "duree": 142,
+        "description": "Un homme condamné à tort cherche la rédemption en prison.",
+        "categories": [
+            "Drame"
+        ],
+        "acteurs": [
+            {
+                "nom_personnage": "Andy Dufresne",
+                "nom_acteur": "Tim Robbins"
+            },
+            {
+                "nom_personnage": "Ellis Redding",
+                "nom_acteur": "Morgan Freeman"
+            },
+            {
+                "nom_personnage": "Samuel Norton",
+                "nom_acteur": "Bob Gunton"
+            }
+        ]
+    }
+]

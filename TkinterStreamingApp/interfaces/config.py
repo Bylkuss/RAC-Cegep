@@ -9,6 +9,7 @@ STYLE_CONFIG = {
     'background_color': '#1E1E1E',  # Dark Gray
     'button_color': '#1F3A6B',  # Steel Blue for buttons
     'danger_color': '#FF0000',  # Red for danger actions
+    'neutral_color': '#6C757D',  # Gray for neutral actions
     'font': ('Poppins', 12),
     'font_bold': ('Poppins', 14, 'bold'),
     'button_radius': 12,
