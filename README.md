@@ -8,8 +8,8 @@ L'application permet de visualiser, ajouter, modifier et supprimer des films et 
 
 ## Démarrer l'application
 
-1. Téléchargez l'exécutable `main.exe` dans le dossier `dist` :
-   - Le fichier exécutable se trouve dans le dossier `dist` après avoir généré l'application avec **PyInstaller**.
+1. Téléchargez l'exécutable `main.exe` dans le dossier `TkinterStreamingApp/dist` :
+   - Le fichier exécutable se trouve dans le dossier `TkinterStreamingApp/dist` après avoir généré l'application avec **PyInstaller**.
 
 2. Exécutez l'application :
    - Sur Windows, lancez le fichier `main.exe` :
