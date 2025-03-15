@@ -1,0 +1,20 @@
+[
+    {
+        "nom": "Dupont",
+        "prenom": "Jean",
+        "sexe": "H",
+        "date_embauche": "2023-01-01",
+        "code_utilisateur": "admin",
+        "password": "password123",
+        "type_acces": "total"
+    },
+    {
+        "nom": "Martin",
+        "prenom": "Sophie",
+        "sexe": "F",
+        "date_embauche": "2022-05-15",
+        "code_utilisateur": "user1",
+        "password": "lecture456",
+        "type_acces": "lecture"
+    }
+]
